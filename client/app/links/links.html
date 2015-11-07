@@ -4,17 +4,17 @@
       <li><a href ng-click="selectTab(1); getLinks()" class="index selected">All Links</a></li>
       <li><a href ng-click="selectTab(2)" class="create">Shorten</a></li>
     </ul>
-    <a href="/logout" class="logout">Logout</a>
+    <a href="/logout" class="logout" ng-click="">Logout</a>
   </div>
   <div id='container'>
     <div class="links" ng-show="isSelected(1)">
-      <div class="link" ng-repeat="link in links">
+      <div class="link" ng-repeat="link in links | orderBy:'-visits'">
         <img src="assets/redirect_icon.png">
         <div class="info">
           <div class="visits"><span class="count">{{link.visits}}</span>Visits</div>
           <div class="title">{{link.title}}</div>
           <div class="original">{{link.url}}</div>
-          <a href="/api/links/{{link.code}}">/{{link.code}}</a>
+          <a href="/api/links/{{link.code}}">{{link.base_url}}/{{link.code}}</a>
         </div>
       </div>
     </div>
