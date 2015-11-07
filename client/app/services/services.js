@@ -6,11 +6,11 @@ angular.module('shortly.services', [])
     getLinks: function () {
       return $http({
         method: 'GET',
-        url: '/api/links/'
+        url: '/api/links'
       })
       .then(function (resp) {
         return resp.data;
-      }, function(resp){
+      }, function (resp) {
         console.log('err');
         return resp;
       });
@@ -18,13 +18,13 @@ angular.module('shortly.services', [])
     postLink: function (url) {
       return $http({
         method: 'POST',
-        url: '/api/links/',
+        url: '/api/links',
         data: {url: url}
       })
-      .then(function (resp){
+      .then(function (resp) {
         console.log('Link sent successfully!', resp.data);
         return resp.data;
-      }, function(resp){
+      }, function (resp) {
         console.log('Error sending link to the server', resp);
       });
     }

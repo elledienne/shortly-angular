@@ -19,44 +19,40 @@ angular.module('shortly.links', [])
   $scope.isLoading = false;
   $scope.newLink = null;
 
-  $scope.init = function(){
+  $scope.init = function () {
     $scope.tab = 1;
     $scope.getLinks();
-    
   };
 
-  $scope.postLink = function(){
+  $scope.postLink = function () {
     $scope.setLoading(true);
-    Links.postLink($scope.url).then(function(resp){
+    Links.postLink($scope.url).then(function (resp) {
       $scope.newLink = resp;
       $scope.setLoading(false);
       //console.log($scope.links);
     });
   };
-  
-  $scope.getLinks = function(){
-    Links.getLinks().then(function(resp){
+
+  $scope.getLinks = function () {
+    Links.getLinks().then(function (resp) {
       $scope.links = resp;
       //console.log($scope.links);
     });
   };
 
-  $scope.selectTab = function(tabNumber){
+  $scope.selectTab = function (tabNumber) {
     $scope.tab = tabNumber;
   };
 
-  $scope.isSelected = function(tabNumber){
+  $scope.isSelected = function (tabNumber) {
     return $scope.tab === tabNumber;
   };
 
-  $scope.setLoading = function(state){
+  $scope.setLoading = function (state) {
     $scope.isLoading = state;
   };
   //$scope.links = Links.getLinks();
   //$scope.init = Links.init;
 
-
-
   $scope.init();
-  
 });
