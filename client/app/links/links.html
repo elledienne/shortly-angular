@@ -1,3 +1,30 @@
-<div id='container'>
-  <!-- Your html here -->
+<div ng-controller="LinksController">
+  <div class="navigation">
+    <ul>
+      <li><a href ng-click="tab = 1" class="index selected">All Links</a></li>
+      <li><a href ng-click="tab = 2" class="create">Shorten</a></li>
+    </ul>
+    <a href="/logout" class="logout">Logout</a>
+  </div>
+  <div id='container'>
+    <div class="links" ng-show="tab === 1" ng-init="tab = 1">
+      <div class="link" ng-repeat="link in links">
+        <img src="/redirect_icon.png">
+        <div class="info">
+          <div class="visits"><span class="count">{{link.visitCount}}</span>Visits</div>
+          <div class="title">{{link.title}}</div>
+          <div class="original">{{link.originalLink}}</div>
+          <a href="{{link.shortLink}}">{{link.shortLink}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="creator" ng-show="tab === 2">
+      <form>
+        <input class="text" type="text" name="url">
+        <input type="submit" value="Shorten">
+      </form>
+      <img class="spinner" src="/spiffygif_46x46.gif">
+      <div class="message"></div>
+    </div>
+  </div>
 </div>
