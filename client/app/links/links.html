@@ -1,7 +1,7 @@
 <div ng-controller="LinksController">
   <div class="navigation">
     <ul>
-      <li><a href ng-click="selectTab(1)" class="index selected">All Links</a></li>
+      <li><a href ng-click="selectTab(1); getLinks()" class="index selected">All Links</a></li>
       <li><a href ng-click="selectTab(2)" class="create">Shorten</a></li>
     </ul>
     <a href="/logout" class="logout">Logout</a>
@@ -11,20 +11,30 @@
       <div class="link" ng-repeat="link in links">
         <img src="assets/redirect_icon.png">
         <div class="info">
-          <div class="visits"><span class="count">{{link.visitCount}}</span>Visits</div>
+          <div class="visits"><span class="count">{{link.visits}}</span>Visits</div>
           <div class="title">{{link.title}}</div>
-          <div class="original">{{link.originalLink}}</div>
-          <a href="{{link.shortLink}}">{{link.shortLink}}</a>
+          <div class="original">{{link.url}}</div>
+          <a href="/api/links/{{link.code}}">/{{link.code}}</a>
         </div>
       </div>
     </div>
     <div class="creator" ng-show="isSelected(2)">
       <form>
-        <input class="text" type="text" name="url">
-        <input type="submit" value="Shorten">
+        <input class="text" type="text" name="url" ng-model="url">
+        <input type="submit" value="Shorten" ng-click="postLink()">
       </form>
-      <img class="spinner" src="assets/spiffygif_46x46.gif">
-      <div class="message"></div>
+      <img class="spinner" ng-show="isLoading" src="assets/spiffygif_46x46.gif">
+      <div class="message" ng-show="newLink">
+        <div class="link" style="display: block;">
+          <img src="assets/redirect_icon.png">
+          <div class="info">
+            <div class="visits"><span class="count">{{newLink.visits}}</span>Visits</div>
+            <div class="title">{{newLink.title}}</div>
+            <div class="original">{{newLink.url}}</div>
+            <a href="/api/links/{{newLink.code}}">/{{newLink.code}}</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
