@@ -13,6 +13,24 @@ angular.module('shortly.links', [])
      'visitCount': '5'
     }
   ];
-  
+  $scope.data = {};
 
+  $scope.init = function(){
+    $scope.tab = 1;
+    $scope.linksTEST = Links.getLinks();
+  };
+
+  $scope.selectTab = function(tabNumber){
+    $scope.tab = tabNumber;
+  };
+
+  $scope.isSelected = function(tabNumber){
+    return $scope.tab === tabNumber;
+  };
+  //$scope.links = Links.getLinks();
+  //$scope.init = Links.init;
+
+
+
+  $scope.init();
 });
