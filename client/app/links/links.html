@@ -4,7 +4,7 @@
       <li><a href ng-click="selectTab(1); getLinks()" class="index selected">All Links</a></li>
       <li><a href ng-click="selectTab(2)" class="create">Shorten</a></li>
     </ul>
-    <a href="/logout" class="logout" ng-click="">Logout</a>
+    <a href class="logout" ng-click="logout()">Logout</a>
   </div>
   <div id='container'>
     <div class="links" ng-show="isSelected(1)">
@@ -19,9 +19,9 @@
       </div>
     </div>
     <div class="creator" ng-show="isSelected(2)">
-      <form>
-        <input class="text" type="text" name="url" ng-model="url">
-        <input type="submit" value="Shorten" ng-click="postLink()">
+      <form name='urlSender'>
+        <input class="text" type="url" name="url" ng-model="url">
+        <input type="submit" value="Shorten" ng-disabled="urlSender.$invalid" ng-click="postLink(); console.log(urlSender.url.$invalid);">
       </form>
       <img class="spinner" ng-show="isLoading" src="assets/spiffygif_46x46.gif">
       <div class="message" ng-show="newLink">

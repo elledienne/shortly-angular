@@ -67,6 +67,8 @@ angular.module('shortly.services', [])
   var signout = function () {
     $window.localStorage.removeItem('com.shortly');
     $location.path('/signin');
+    //$location.reload();
+    $route.reload();
   };
 
 

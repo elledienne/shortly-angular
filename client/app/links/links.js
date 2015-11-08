@@ -1,6 +1,6 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, Links) {
+.controller('LinksController', function ($scope, Links, Auth) {
   // $scope.links = [
   //   {'title': 'Test1',
   //    'originalLink': 'http://17826476',
@@ -36,7 +36,7 @@ angular.module('shortly.links', [])
   $scope.getLinks = function () {
     Links.getLinks().then(function (resp) {
       $scope.links = resp;
-      //console.log($scope.links);
+      console.log($scope.links);
     });
   };
 
@@ -53,6 +53,9 @@ angular.module('shortly.links', [])
   };
   //$scope.links = Links.getLinks();
   //$scope.init = Links.init;
+  $scope.logout = function(){
+    Auth.signout();
+  };
 
   $scope.init();
 });
